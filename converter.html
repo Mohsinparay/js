@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Length Converter</title>
+    </head>
+    <body>
+        <div class="main">
+            <label for="lengthSelectFrom">Convert from:</label>
+            <select id="lengthSelectFrom">
+                <option value="cm">Centimeters</option>
+                <option value="m">Meters</option>
+                <option value="ft">Feet</option>
+                <option value="km">Kilometers</option>
+            </select>
+            <br>
+            <br>
+            <label for="number">Enter length:</label>
+            <input type="number" name="number" id="number">
+            <br>
+            <br>
+            <label for="lengthSelectTo">Convert to:</label>
+            <select id="lengthSelectTo">
+                <option value="cm">Centimeters</option>
+                <option value="m">Meters</option>
+                <option value="ft">Feet</option>
+                <option value="km">Kilometers</option>
+            </select>
+            <br>
+            <br>
+            <button onclick="convertLength()">Convert</button>
+            <br>
+            <br>
+            <!-- display converted result -->
+            <p id="displayResult"></p>
+        </div>
+        <script>
+    function convertLength() {
+        var fromUnit = document.getElementById("lengthSelectFrom").value;
+        var toUnit = document.getElementById("lengthSelectTo").value;
+        var inputLength = document.getElementById("number").value;
+
+        // Convert to meters first
+        if (fromUnit === "cm") {
+            inputLength /= 100;
+        } else if (fromUnit === "ft") {
+            inputLength /= 3.28084;
+        } else if (fromUnit === "km") {
+            inputLength *= 1000;
+        }
+
+        // Convert to desired unit
+        if (toUnit === "m") {
+            inputLength /= 100;
+        }
+        if (toUnit === "cm") {
+            inputLength *= 100;
+        } else if (toUnit === "ft") {
+            inputLength *= 3.28084;
+        } else if (toUnit === "km") {
+            inputLength /= 1000;
+        }
+
+        document.getElementById("displayResult").innerHTML = inputLength  + toUnit;
+    }
+        </script>
+    </body>
+</html>
